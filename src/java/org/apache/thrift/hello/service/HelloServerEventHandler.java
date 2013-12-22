@@ -4,30 +4,49 @@ import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.server.ServerContext;
 import org.apache.thrift.server.TServerEventHandler;
 import org.apache.thrift.transport.TTransport;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.atomic.AtomicLong;
 
 public class HelloServerEventHandler implements TServerEventHandler {
-    private static final Logger logger = LoggerFactory.getLogger(HelloServerEventHandler.class);
+    private AtomicLong nextConnectionId = new AtomicLong(0);
+
+    public class HelloServerContext implements ServerContext {
+        private long connectionId = 0;
+
+        public HelloServerContext(long id) {
+           this.connectionId = id;
+        }
+
+        public long getConnectionId() {
+            return connectionId;
+        }
+    }
 
     @Override
     public void preServe() {
-        logger.info("thread {} server start", Thread.currentThread().getId());
+        System.out.println("thread: " + Thread.currentThread().getId() + ", server start!" );
     }
 
     @Override
     public ServerContext createContext(TProtocol input, TProtocol output) {
-        logger.info("thread {} server accept a new connect", Thread.currentThread().getId());
-        return null;
+        long myConnId = nextConnectionId.incrementAndGet();
+        System.out.println("thread: " + Thread.currentThread().getId() +
+                ", connection= " + myConnId +
+                ", server accept a new connection!" );
+        return new HelloServerContext(myConnId);
     }
 
     @Override
     public void deleteContext(ServerContext serverContext, TProtocol input, TProtocol output) {
-        logger.info("thread {} server this connect exit", Thread.currentThread().getId());
+        System.out.println("thread: " + Thread.currentThread().getId() +
+                ", connection= " + ((HelloServerContext)serverContext).getConnectionId() +
+                ", server exit connection!");
     }
 
     @Override
     public void processContext(ServerContext serverContext, TTransport inputTransport, TTransport outputTransport) {
-        logger.info("thread {} server is ready to get a next call", Thread.currentThread().getId());
+        System.out.println("thread: " + Thread.currentThread().getId() +
+                ", connection= " + ((HelloServerContext)serverContext).getConnectionId() +
+                ", server is ready to get a next call!");
     }
 }
