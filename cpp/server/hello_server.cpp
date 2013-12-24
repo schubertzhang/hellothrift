@@ -1,6 +1,3 @@
-// Copyright 2013, Baidu Inc.
-// Author: Zhang Songbo <zhangsongbo@baidu.com>
-
 #include <stdio.h>
 #include <string>
 
