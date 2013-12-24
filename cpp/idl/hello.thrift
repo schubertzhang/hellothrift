@@ -2,14 +2,14 @@
 # Interface definition for HelloService
 #
 
-# ########################################################################
-# *** PLEASE REMEMBER TO EDIT THE VERSION CONSTANT WHEN MAKING CHANGES ***
-# ########################################################################
+# ############################################################################
+# *** PLEASE REMEMBER TO EDIT THE IDL_VERSION CONSTANT WHEN MAKING CHANGES ***
+# ############################################################################
 
-
+#
 # namespace
-namespace cpp  baidu.longscheduler.sample
-
+#
+namespace cpp baidu.longscheduler.sample
 
 # The interface version (NOT the product version), composed as a dot delimited
 # string with major, minor, and patch level components.
@@ -23,7 +23,6 @@ namespace cpp  baidu.longscheduler.sample
 #
 # See the Semantic Versioning Specification (SemVer) http://semver.org.
 const string IDL_VERSION = "1.0.1"
-
 
 #
 # data structures
@@ -47,14 +46,13 @@ exception InvalidRequestException {
     1: required string why
 }
 
-
 #
-# Service
+# RPC Service
 #
 service HelloService {
 
-    string helloEcho(1:required string message, 2:required HelloStruct body),
-                  
-    oneway void hello(1:required string message, 2:required HelloStruct body)
+    string HelloEcho(1:required string message, 2:required HelloStruct body),
+
+    oneway void Hello(1:required string message, 2:required HelloStruct body)
 
 }

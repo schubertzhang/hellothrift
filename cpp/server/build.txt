@@ -1,6 +1,2 @@
 g++ -o server *.cpp  -lthrift -lthriftnb -levent
-
-
-
-http://wiki.apache.org/thrift/ThriftUsageC%2B%2B
-https://github.com/m1ch1/mapkeeper/wiki/Thrift-Java-Servers-Compared
+ -lgflags

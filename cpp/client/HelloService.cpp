@@ -8,7 +8,7 @@
 
 namespace baidu { namespace longscheduler { namespace sample {
 
-uint32_t HelloService_helloEcho_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t HelloService_HelloEcho_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   uint32_t xfer = 0;
   std::string fname;
@@ -62,9 +62,9 @@ uint32_t HelloService_helloEcho_args::read(::apache::thrift::protocol::TProtocol
   return xfer;
 }
 
-uint32_t HelloService_helloEcho_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t HelloService_HelloEcho_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
-  xfer += oprot->writeStructBegin("HelloService_helloEcho_args");
+  xfer += oprot->writeStructBegin("HelloService_HelloEcho_args");
 
   xfer += oprot->writeFieldBegin("message", ::apache::thrift::protocol::T_STRING, 1);
   xfer += oprot->writeString(this->message);
@@ -79,9 +79,9 @@ uint32_t HelloService_helloEcho_args::write(::apache::thrift::protocol::TProtoco
   return xfer;
 }
 
-uint32_t HelloService_helloEcho_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t HelloService_HelloEcho_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
-  xfer += oprot->writeStructBegin("HelloService_helloEcho_pargs");
+  xfer += oprot->writeStructBegin("HelloService_HelloEcho_pargs");
 
   xfer += oprot->writeFieldBegin("message", ::apache::thrift::protocol::T_STRING, 1);
   xfer += oprot->writeString((*(this->message)));
@@ -96,7 +96,7 @@ uint32_t HelloService_helloEcho_pargs::write(::apache::thrift::protocol::TProtoc
   return xfer;
 }
 
-uint32_t HelloService_helloEcho_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t HelloService_HelloEcho_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   uint32_t xfer = 0;
   std::string fname;
@@ -136,11 +136,11 @@ uint32_t HelloService_helloEcho_result::read(::apache::thrift::protocol::TProtoc
   return xfer;
 }
 
-uint32_t HelloService_helloEcho_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t HelloService_HelloEcho_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("HelloService_helloEcho_result");
+  xfer += oprot->writeStructBegin("HelloService_HelloEcho_result");
 
   if (this->__isset.success) {
     xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_STRING, 0);
@@ -152,7 +152,7 @@ uint32_t HelloService_helloEcho_result::write(::apache::thrift::protocol::TProto
   return xfer;
 }
 
-uint32_t HelloService_helloEcho_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t HelloService_HelloEcho_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   uint32_t xfer = 0;
   std::string fname;
@@ -192,7 +192,7 @@ uint32_t HelloService_helloEcho_presult::read(::apache::thrift::protocol::TProto
   return xfer;
 }
 
-uint32_t HelloService_hello_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t HelloService_Hello_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   uint32_t xfer = 0;
   std::string fname;
@@ -246,9 +246,9 @@ uint32_t HelloService_hello_args::read(::apache::thrift::protocol::TProtocol* ip
   return xfer;
 }
 
-uint32_t HelloService_hello_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t HelloService_Hello_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
-  xfer += oprot->writeStructBegin("HelloService_hello_args");
+  xfer += oprot->writeStructBegin("HelloService_Hello_args");
 
   xfer += oprot->writeFieldBegin("message", ::apache::thrift::protocol::T_STRING, 1);
   xfer += oprot->writeString(this->message);
@@ -263,9 +263,9 @@ uint32_t HelloService_hello_args::write(::apache::thrift::protocol::TProtocol* o
   return xfer;
 }
 
-uint32_t HelloService_hello_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t HelloService_Hello_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
-  xfer += oprot->writeStructBegin("HelloService_hello_pargs");
+  xfer += oprot->writeStructBegin("HelloService_Hello_pargs");
 
   xfer += oprot->writeFieldBegin("message", ::apache::thrift::protocol::T_STRING, 1);
   xfer += oprot->writeString((*(this->message)));
@@ -280,18 +280,18 @@ uint32_t HelloService_hello_pargs::write(::apache::thrift::protocol::TProtocol* 
   return xfer;
 }
 
-void HelloServiceClient::helloEcho(std::string& _return, const std::string& message, const HelloStruct& body)
+void HelloServiceClient::HelloEcho(std::string& _return, const std::string& message, const HelloStruct& body)
 {
-  send_helloEcho(message, body);
-  recv_helloEcho(_return);
+  send_HelloEcho(message, body);
+  recv_HelloEcho(_return);
 }
 
-void HelloServiceClient::send_helloEcho(const std::string& message, const HelloStruct& body)
+void HelloServiceClient::send_HelloEcho(const std::string& message, const HelloStruct& body)
 {
   int32_t cseqid = 0;
-  oprot_->writeMessageBegin("helloEcho", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("HelloEcho", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  HelloService_helloEcho_pargs args;
+  HelloService_HelloEcho_pargs args;
   args.message = &message;
   args.body = &body;
   args.write(oprot_);
@@ -301,7 +301,7 @@ void HelloServiceClient::send_helloEcho(const std::string& message, const HelloS
   oprot_->getTransport()->flush();
 }
 
-void HelloServiceClient::recv_helloEcho(std::string& _return)
+void HelloServiceClient::recv_HelloEcho(std::string& _return)
 {
 
   int32_t rseqid = 0;
@@ -321,12 +321,12 @@ void HelloServiceClient::recv_helloEcho(std::string& _return)
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  if (fname.compare("helloEcho") != 0) {
+  if (fname.compare("HelloEcho") != 0) {
     iprot_->skip(::apache::thrift::protocol::T_STRUCT);
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  HelloService_helloEcho_presult result;
+  HelloService_HelloEcho_presult result;
   result.success = &_return;
   result.read(iprot_);
   iprot_->readMessageEnd();
@@ -336,20 +336,20 @@ void HelloServiceClient::recv_helloEcho(std::string& _return)
     // _return pointer has now been filled
     return;
   }
-  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "helloEcho failed: unknown result");
+  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "HelloEcho failed: unknown result");
 }
 
-void HelloServiceClient::hello(const std::string& message, const HelloStruct& body)
+void HelloServiceClient::Hello(const std::string& message, const HelloStruct& body)
 {
-  send_hello(message, body);
+  send_Hello(message, body);
 }
 
-void HelloServiceClient::send_hello(const std::string& message, const HelloStruct& body)
+void HelloServiceClient::send_Hello(const std::string& message, const HelloStruct& body)
 {
   int32_t cseqid = 0;
-  oprot_->writeMessageBegin("hello", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("Hello", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  HelloService_hello_pargs args;
+  HelloService_Hello_pargs args;
   args.message = &message;
   args.body = &body;
   args.write(oprot_);
@@ -378,38 +378,38 @@ bool HelloServiceProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* 
   return true;
 }
 
-void HelloServiceProcessor::process_helloEcho(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void HelloServiceProcessor::process_HelloEcho(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("HelloService.helloEcho", callContext);
+    ctx = this->eventHandler_->getContext("HelloService.HelloEcho", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "HelloService.helloEcho");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "HelloService.HelloEcho");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "HelloService.helloEcho");
+    this->eventHandler_->preRead(ctx, "HelloService.HelloEcho");
   }
 
-  HelloService_helloEcho_args args;
+  HelloService_HelloEcho_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "HelloService.helloEcho", bytes);
+    this->eventHandler_->postRead(ctx, "HelloService.HelloEcho", bytes);
   }
 
-  HelloService_helloEcho_result result;
+  HelloService_HelloEcho_result result;
   try {
-    iface_->helloEcho(result.success, args.message, args.body);
+    iface_->HelloEcho(result.success, args.message, args.body);
     result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "HelloService.helloEcho");
+      this->eventHandler_->handlerError(ctx, "HelloService.HelloEcho");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
-    oprot->writeMessageBegin("helloEcho", ::apache::thrift::protocol::T_EXCEPTION, seqid);
+    oprot->writeMessageBegin("HelloEcho", ::apache::thrift::protocol::T_EXCEPTION, seqid);
     x.write(oprot);
     oprot->writeMessageEnd();
     oprot->getTransport()->writeEnd();
@@ -418,52 +418,52 @@ void HelloServiceProcessor::process_helloEcho(int32_t seqid, ::apache::thrift::p
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "HelloService.helloEcho");
+    this->eventHandler_->preWrite(ctx, "HelloService.HelloEcho");
   }
 
-  oprot->writeMessageBegin("helloEcho", ::apache::thrift::protocol::T_REPLY, seqid);
+  oprot->writeMessageBegin("HelloEcho", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "HelloService.helloEcho", bytes);
+    this->eventHandler_->postWrite(ctx, "HelloService.HelloEcho", bytes);
   }
 }
 
-void HelloServiceProcessor::process_hello(int32_t, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol*, void* callContext)
+void HelloServiceProcessor::process_Hello(int32_t, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol*, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("HelloService.hello", callContext);
+    ctx = this->eventHandler_->getContext("HelloService.Hello", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "HelloService.hello");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "HelloService.Hello");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "HelloService.hello");
+    this->eventHandler_->preRead(ctx, "HelloService.Hello");
   }
 
-  HelloService_hello_args args;
+  HelloService_Hello_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "HelloService.hello", bytes);
+    this->eventHandler_->postRead(ctx, "HelloService.Hello", bytes);
   }
 
   try {
-    iface_->hello(args.message, args.body);
+    iface_->Hello(args.message, args.body);
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "HelloService.hello");
+      this->eventHandler_->handlerError(ctx, "HelloService.Hello");
     }
     return;
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->asyncComplete(ctx, "HelloService.hello");
+    this->eventHandler_->asyncComplete(ctx, "HelloService.Hello");
   }
 
   return;

@@ -15,8 +15,8 @@ namespace baidu { namespace longscheduler { namespace sample {
 class HelloServiceIf {
  public:
   virtual ~HelloServiceIf() {}
-  virtual void helloEcho(std::string& _return, const std::string& message, const HelloStruct& body) = 0;
-  virtual void hello(const std::string& message, const HelloStruct& body) = 0;
+  virtual void HelloEcho(std::string& _return, const std::string& message, const HelloStruct& body) = 0;
+  virtual void Hello(const std::string& message, const HelloStruct& body) = 0;
 };
 
 class HelloServiceIfFactory {
@@ -46,22 +46,22 @@ class HelloServiceIfSingletonFactory : virtual public HelloServiceIfFactory {
 class HelloServiceNull : virtual public HelloServiceIf {
  public:
   virtual ~HelloServiceNull() {}
-  void helloEcho(std::string& /* _return */, const std::string& /* message */, const HelloStruct& /* body */) {
+  void HelloEcho(std::string& /* _return */, const std::string& /* message */, const HelloStruct& /* body */) {
     return;
   }
-  void hello(const std::string& /* message */, const HelloStruct& /* body */) {
+  void Hello(const std::string& /* message */, const HelloStruct& /* body */) {
     return;
   }
 };
 
 
-class HelloService_helloEcho_args {
+class HelloService_HelloEcho_args {
  public:
 
-  HelloService_helloEcho_args() : message() {
+  HelloService_HelloEcho_args() : message() {
   }
 
-  virtual ~HelloService_helloEcho_args() throw() {}
+  virtual ~HelloService_HelloEcho_args() throw() {}
 
   std::string message;
   HelloStruct body;
@@ -74,7 +74,7 @@ class HelloService_helloEcho_args {
     body = val;
   }
 
-  bool operator == (const HelloService_helloEcho_args & rhs) const
+  bool operator == (const HelloService_HelloEcho_args & rhs) const
   {
     if (!(message == rhs.message))
       return false;
@@ -82,11 +82,11 @@ class HelloService_helloEcho_args {
       return false;
     return true;
   }
-  bool operator != (const HelloService_helloEcho_args &rhs) const {
+  bool operator != (const HelloService_HelloEcho_args &rhs) const {
     return !(*this == rhs);
   }
 
-  bool operator < (const HelloService_helloEcho_args & ) const;
+  bool operator < (const HelloService_HelloEcho_args & ) const;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
@@ -94,11 +94,11 @@ class HelloService_helloEcho_args {
 };
 
 
-class HelloService_helloEcho_pargs {
+class HelloService_HelloEcho_pargs {
  public:
 
 
-  virtual ~HelloService_helloEcho_pargs() throw() {}
+  virtual ~HelloService_HelloEcho_pargs() throw() {}
 
   const std::string* message;
   const HelloStruct* body;
@@ -107,71 +107,71 @@ class HelloService_helloEcho_pargs {
 
 };
 
-typedef struct _HelloService_helloEcho_result__isset {
-  _HelloService_helloEcho_result__isset() : success(false) {}
+typedef struct _HelloService_HelloEcho_result__isset {
+  _HelloService_HelloEcho_result__isset() : success(false) {}
   bool success;
-} _HelloService_helloEcho_result__isset;
+} _HelloService_HelloEcho_result__isset;
 
-class HelloService_helloEcho_result {
+class HelloService_HelloEcho_result {
  public:
 
-  HelloService_helloEcho_result() : success() {
+  HelloService_HelloEcho_result() : success() {
   }
 
-  virtual ~HelloService_helloEcho_result() throw() {}
+  virtual ~HelloService_HelloEcho_result() throw() {}
 
   std::string success;
 
-  _HelloService_helloEcho_result__isset __isset;
+  _HelloService_HelloEcho_result__isset __isset;
 
   void __set_success(const std::string& val) {
     success = val;
   }
 
-  bool operator == (const HelloService_helloEcho_result & rhs) const
+  bool operator == (const HelloService_HelloEcho_result & rhs) const
   {
     if (!(success == rhs.success))
       return false;
     return true;
   }
-  bool operator != (const HelloService_helloEcho_result &rhs) const {
+  bool operator != (const HelloService_HelloEcho_result &rhs) const {
     return !(*this == rhs);
   }
 
-  bool operator < (const HelloService_helloEcho_result & ) const;
+  bool operator < (const HelloService_HelloEcho_result & ) const;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
 };
 
-typedef struct _HelloService_helloEcho_presult__isset {
-  _HelloService_helloEcho_presult__isset() : success(false) {}
+typedef struct _HelloService_HelloEcho_presult__isset {
+  _HelloService_HelloEcho_presult__isset() : success(false) {}
   bool success;
-} _HelloService_helloEcho_presult__isset;
+} _HelloService_HelloEcho_presult__isset;
 
-class HelloService_helloEcho_presult {
+class HelloService_HelloEcho_presult {
  public:
 
 
-  virtual ~HelloService_helloEcho_presult() throw() {}
+  virtual ~HelloService_HelloEcho_presult() throw() {}
 
   std::string* success;
 
-  _HelloService_helloEcho_presult__isset __isset;
+  _HelloService_HelloEcho_presult__isset __isset;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
 
 };
 
 
-class HelloService_hello_args {
+class HelloService_Hello_args {
  public:
 
-  HelloService_hello_args() : message() {
+  HelloService_Hello_args() : message() {
   }
 
-  virtual ~HelloService_hello_args() throw() {}
+  virtual ~HelloService_Hello_args() throw() {}
 
   std::string message;
   HelloStruct body;
@@ -184,7 +184,7 @@ class HelloService_hello_args {
     body = val;
   }
 
-  bool operator == (const HelloService_hello_args & rhs) const
+  bool operator == (const HelloService_Hello_args & rhs) const
   {
     if (!(message == rhs.message))
       return false;
@@ -192,11 +192,11 @@ class HelloService_hello_args {
       return false;
     return true;
   }
-  bool operator != (const HelloService_hello_args &rhs) const {
+  bool operator != (const HelloService_Hello_args &rhs) const {
     return !(*this == rhs);
   }
 
-  bool operator < (const HelloService_hello_args & ) const;
+  bool operator < (const HelloService_Hello_args & ) const;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
@@ -204,11 +204,11 @@ class HelloService_hello_args {
 };
 
 
-class HelloService_hello_pargs {
+class HelloService_Hello_pargs {
  public:
 
 
-  virtual ~HelloService_hello_pargs() throw() {}
+  virtual ~HelloService_Hello_pargs() throw() {}
 
   const std::string* message;
   const HelloStruct* body;
@@ -237,11 +237,11 @@ class HelloServiceClient : virtual public HelloServiceIf {
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> getOutputProtocol() {
     return poprot_;
   }
-  void helloEcho(std::string& _return, const std::string& message, const HelloStruct& body);
-  void send_helloEcho(const std::string& message, const HelloStruct& body);
-  void recv_helloEcho(std::string& _return);
-  void hello(const std::string& message, const HelloStruct& body);
-  void send_hello(const std::string& message, const HelloStruct& body);
+  void HelloEcho(std::string& _return, const std::string& message, const HelloStruct& body);
+  void send_HelloEcho(const std::string& message, const HelloStruct& body);
+  void recv_HelloEcho(std::string& _return);
+  void Hello(const std::string& message, const HelloStruct& body);
+  void send_Hello(const std::string& message, const HelloStruct& body);
  protected:
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot_;
@@ -257,13 +257,13 @@ class HelloServiceProcessor : public ::apache::thrift::TDispatchProcessor {
   typedef  void (HelloServiceProcessor::*ProcessFunction)(int32_t, ::apache::thrift::protocol::TProtocol*, ::apache::thrift::protocol::TProtocol*, void*);
   typedef std::map<std::string, ProcessFunction> ProcessMap;
   ProcessMap processMap_;
-  void process_helloEcho(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
-  void process_hello(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_HelloEcho(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_Hello(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
  public:
   HelloServiceProcessor(boost::shared_ptr<HelloServiceIf> iface) :
     iface_(iface) {
-    processMap_["helloEcho"] = &HelloServiceProcessor::process_helloEcho;
-    processMap_["hello"] = &HelloServiceProcessor::process_hello;
+    processMap_["HelloEcho"] = &HelloServiceProcessor::process_HelloEcho;
+    processMap_["Hello"] = &HelloServiceProcessor::process_Hello;
   }
 
   virtual ~HelloServiceProcessor() {}
@@ -292,23 +292,23 @@ class HelloServiceMultiface : virtual public HelloServiceIf {
     ifaces_.push_back(iface);
   }
  public:
-  void helloEcho(std::string& _return, const std::string& message, const HelloStruct& body) {
+  void HelloEcho(std::string& _return, const std::string& message, const HelloStruct& body) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->helloEcho(_return, message, body);
+      ifaces_[i]->HelloEcho(_return, message, body);
     }
-    ifaces_[i]->helloEcho(_return, message, body);
+    ifaces_[i]->HelloEcho(_return, message, body);
     return;
   }
 
-  void hello(const std::string& message, const HelloStruct& body) {
+  void Hello(const std::string& message, const HelloStruct& body) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->hello(message, body);
+      ifaces_[i]->Hello(message, body);
     }
-    ifaces_[i]->hello(message, body);
+    ifaces_[i]->Hello(message, body);
   }
 
 };
