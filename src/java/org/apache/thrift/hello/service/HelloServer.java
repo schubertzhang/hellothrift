@@ -205,7 +205,8 @@ public class HelloServer {
         helloServer.setServerEventHandler(new HelloServerEventHandler());
 
         // Start server
+        System.out.println("Start Server ...");
         helloServer.serve();
+        System.out.println("Exit Server ...");
     }
-
 }
