@@ -1,2 +1,1 @@
-g++ -o server *.cpp  -lthrift -lthriftnb -levent
- -lgflags
+g++ -o server *.cpp  -lthrift -lthriftnb -levent -lgflags

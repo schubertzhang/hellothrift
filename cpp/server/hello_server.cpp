@@ -126,10 +126,10 @@ int main(int argc, char** argv) {
     // gflags
     google::ParseCommandLineFlags(&argc, &argv, true);
 
-    printf("option gflags: --transport_type = %s\n", FLAGS_transport_type.c_str());
-    printf("option gflags: --protocol_type = %s\n", FLAGS_protocol_type.c_str());
-    printf("option gflags: --server_type = %s\n", FLAGS_server_type.c_str());
-    printf("option gflags: --server_port = %d\n", FLAGS_server_port);
+    printf("transport_type = %s\n", FLAGS_transport_type.c_str());
+    printf("protocol_type = %s\n", FLAGS_protocol_type.c_str());
+    printf("server_type = %s\n", FLAGS_server_type.c_str());
+    printf("server_port = %d\n", FLAGS_server_port);
 
     // Client Connected Transport (created after accept)
     // Pay attention, nonblocking server not use this transportFactory,

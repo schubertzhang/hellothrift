@@ -43,10 +43,10 @@ int main(int argc, char** argv) {
     // gflags
     google::ParseCommandLineFlags(&argc, &argv, true);
 
-    printf("option gflags: --transport_type = %s\n", FLAGS_transport_type.c_str());
-    printf("option gflags: --protocol_type = %s\n", FLAGS_protocol_type.c_str());
-    printf("option gflags: --server_host = %s\n", FLAGS_server_host.c_str());
-    printf("option gflags: --server_port = %d\n", FLAGS_server_port);
+    printf("transport_type = %s\n", FLAGS_transport_type.c_str());
+    printf("protocol_type = %s\n", FLAGS_protocol_type.c_str());
+    printf("server_host = %s\n", FLAGS_server_host.c_str());
+    printf("server_port = %d\n", FLAGS_server_port);
 
     // Transport
     boost::shared_ptr<TTransport> socket(new TSocket(FLAGS_server_host, FLAGS_server_port));
