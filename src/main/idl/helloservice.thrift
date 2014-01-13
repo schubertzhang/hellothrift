@@ -9,6 +9,7 @@
 
 # namespace
 namespace java org.apache.thrift.hello.service
+namespace php  org.apache.thrift.hello.service
 
 
 # The interface version (NOT the product version), composed as a dot delimited
