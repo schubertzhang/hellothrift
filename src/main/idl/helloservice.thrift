@@ -55,9 +55,5 @@ exception InvalidRequestException {
 service HelloService {
   string helloEcho(1:required string message, 2:required HelloStruct body)
                   throws (1:InvalidRequestException ire),
-  oneway void hello(1:required string message, 2:required HelloStruct body),
-}
-
-service Hello2Service {
-  string hello2Echo(1:required string message),
+  oneway void hello(1:required string message, 2:required HelloStruct body)
 }
