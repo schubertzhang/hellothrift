@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!--
+ ~ ***************************************************************
+ ~ Copyright 2009~ (c) BIGDATA. All Rights Reserved.
+ ~ ***************************************************************
+ -->
+
+<project basedir="." default="package" name="bigdata">
+    <property environment="env"/>
+    <property file="build.properties"/>
+    
+    <!-- bigdata names (you man modify them for your project) -->
+    <property name="version" value="${app.version}"/>
+    <property name="subname" value="${app.name}"/>
+    <property name="final.name" value="${ant.project.name}-${subname}-${version}"/>
+  
+    <!-- javac options -->
+    <property name="javac.version" value="1.6"/>
+    <property name="javac.source" value="${javac.version}"/>
+    <property name="javac.target" value="${javac.version}"/>
+    <property name="javac.deprecation" value="off"/>
+    <property name="javac.nowarn" value="off"/>
+    <property name="javac.debug" value="off"/>
+    <property name="javac.debuglevel" value="source,lines,vars"/>
+    <property name="javac.optimize" value="on"/>
+    <property name="javac.args" value=""/>
+    <property name="javac.includeantruntime" value="on"/>
+    <!--  property name="javac.args.warnings" value="-Xlint:unchecked"/ -->
+    <property name="javac.args.warnings" value=""/>
+    
+    <!-- jar options -->
+    <property name="jar.index" value="on"/>
+
+    <!-- dir locations -->
+    <property name="src.dir" value="${basedir}/src"/>
+    <property name="src.main.dir" value="${src.dir}/main"/>
+    <property name="src.main.java.dir" value="${src.main.dir}/java"/>
+    <property name="src.main.idl.dir" value="${src.main.dir}/idl"/>
+    <property name="src.test.dir" value="${src.dir}/test"/>
+    <property name="src.test.java.dir" value="${src.test.dir}/java"/>
+    <property name="lib.dir" value="${basedir}/lib"/>
+    <property name="conf.dir" value="${basedir}/conf"/>
+    <property name="bin.dir" value="${basedir}/bin"/> 
+
+    <property name="build.dir" value="${basedir}/build"/>
+    <property name="build.classes.dir" value="${build.dir}/classes"/>
+    <property name="build.javadoc.dir" value="${build.dir}/javadoc"/>
+    <property name="build.dist.dir" value="${build.dir}/dist"/>
+	
+    <!-- classpath -->
+    <path id="bigdata-classpath">
+        <pathelement location="${build.classes.dir}"/>
+        <pathelement location="${conf.dir}"/>
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar" />
+        </fileset>
+    </path>
+
+    <!-- TARGET init -->
+    <target name="init">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <mkdir dir="${build.dir}"/>
+    </target>
+    
+    <!-- TARGET clean -->
+    <target name="clean">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <delete dir="${build.classes.dir}"/>
+        <delete dir="${build.javadoc.dir}"/>
+        <delete dir="${build.dist.dir}"/>
+    </target>
+ 
+    <!-- TARGET cleanall -->
+    <target name="cleanall" depends="clean">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <delete dir="${build.dir}"/>
+        <delete file="${basedir}/${final.name}.jar"/>
+    </target>
+
+
+    <!--
+     ~ ************************************************************************
+     ~ Compile java class files.
+     ~ ************************************************************************
+     -->
+
+    <!-- TARGET compile -->
+    <target name="compile" depends="init" >
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <mkdir dir="${build.classes.dir}"/>
+        <javac source="${javac.source}" target="${javac.target}"
+               debug="${javac.debug}" debuglevel="${javac.debuglevel}"                
+               optimize="${javac.optimize}"
+               deprecation="${javac.deprecation}"
+               nowarn="${javac.nowarn}"
+               includeantruntime="{javac.includeantruntime}"
+               destdir="${build.classes.dir}">
+            <src path="${src.main.java.dir}"/>
+            <src path="${src.main.dir}/idl/gen-java"/>
+            <compilerarg line="${javac.args} ${javac.args.warnings}"/>
+            <classpath refid="bigdata-classpath"/>
+        </javac>
+    </target>
+
+
+    <!--
+     ~ ************************************************************************
+     ~ Make jar file.
+     ~ ************************************************************************
+     -->
+     
+    <!-- TARGET package -->
+    <target name="package" depends="compile">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <jar jarfile="${build.dir}/${final.name}.jar" index="${jar.index}">
+            <fileset dir="${build.classes.dir}"/>
+            <manifest>                
+                <attribute name="Implementation-Title" value="${subname}"/>
+                <attribute name="Implementation-Version" value="${version}"/>
+                <attribute name="Implementation-Vendor" value="bigdata"/>
+            </manifest>
+        </jar>
+
+        <copy todir="${basedir}">
+          <fileset file="${build.dir}/${final.name}.jar"/>
+        </copy>
+    </target>
+    
+    
+    <!--
+     ~ ************************************************************************
+     ~ Java Documentation
+     ~ ************************************************************************
+     -->
+    <target name="javadoc" depends="init">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <mkdir dir="${build.javadoc.dir}"/>
+        <tstamp>
+            <format property="YEAR" pattern="yyyy"/>
+        </tstamp>
+        <javadoc destdir="${build.javadoc.dir}" author="true" version="true" use="true"
+                 windowtitle="${ant.project.name} ${subname} API" classpathref="bigdata-classpath"
+                 bottom="Copyright &amp;copy; ${YEAR} BIGDATA!">
+            <fileset dir="${src.main.java.dir}" defaultexcludes="yes">
+                <include name="**/*.java"/>
+            </fileset>
+        </javadoc>
+    </target>
+    
+   
+    <!--
+     ~ ************************************************************************
+     ~ Tarballs for Distribution.
+     ~ ************************************************************************
+     -->
+    <target name="dist">
+        <echo message="${ant.project.name}: ${ant.file}"/>       
+        <mkdir dir="${build.dist.dir}"/> 
+        <antcall target="dist-bin"/>
+        <antcall target="dist-src"/>
+        <antcall target="dist-doc"/>
+    </target>
+    
+    <!-- dist-bin -->
+    <target name="dist-bin" depends="package">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <copy todir="${build.dist.dir}/lib">
+            <fileset dir="${lib.dir}"/>
+            <fileset dir="${build.dir}">
+                <include name="${final.name}.jar"/>
+            </fileset>
+        </copy>
+        
+        <copy todir="${build.dist.dir}/bin">
+            <fileset dir="${bin.dir}"/>
+        </copy>
+        
+        <copy todir="${build.dist.dir}/conf">
+            <fileset dir="${conf.dir}"/>
+        </copy>
+        
+        <copy todir="${build.dist.dir}/">
+            <fileset dir="${basedir}">
+                <include name="*.txt"/>
+            </fileset>
+        </copy>
+      
+        <tar compression="gzip" longfile="gnu" destfile="${build.dir}/${final.name}-bin.tar.gz">
+            <!-- Everything but bin/ (default mode) -->
+            <tarfileset dir="${build.dist.dir}" prefix="${final.name}">
+                <include name="**"/>
+                <exclude name="bin/*"/>
+            </tarfileset>
+            <!-- Shell includes in bin/ (default mode) -->
+            <tarfileset dir="${build.dist.dir}" prefix="${final.name}">
+                <include name="bin/*-config.sh"/>
+                <include name="bin/*-env.sh"/>
+                <include name="bin/*-opts.sh"/>
+            </tarfileset>
+            <!-- Executable scripts in bin/ -->
+            <tarfileset dir="${build.dist.dir}" prefix="${final.name}" mode="755">
+                <include name="bin/*"/>
+                <exclude name="bin/*-config.sh"/>
+                <exclude name="bin/*-env.sh"/>
+                <exclude name="bin/*-opts.sh"/>
+            </tarfileset>
+        </tar>
+    </target>
+        
+    <!-- dist-src -->
+    <target name="dist-src">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <tar compression="gzip" longfile="gnu" destfile="${build.dir}/${final.name}-src.tar.gz">
+            <tarfileset dir="${basedir}" prefix="${final.name}-src">
+                <include name="**"/>
+                <exclude name="build/**"/>
+                <exclude name="logs/**"/>
+                <exclude name="pids/**"/>
+            </tarfileset>
+        </tar>
+    </target>
+
+    <!-- dist-doc -->
+    <target name="dist-doc" depends="javadoc">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <tar compression="gzip" longfile="gnu" destfile="${build.dir}/${final.name}-doc.tar.gz">
+            <tarfileset dir="${build.javadoc.dir}" prefix="${final.name}-doc">
+                <include name="**"/>
+            </tarfileset>
+        </tar>
+    </target>
+
+
+</project>
