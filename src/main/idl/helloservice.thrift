@@ -42,3 +42,8 @@ service HelloService {
                   throws (1:InvalidRequestException ire),
   oneway void hello(1:required string message, 2:required HelloStruct body)
 }
+
+
+service Hello2Service {
+  string hello2Echo(1:required string message),
+}
