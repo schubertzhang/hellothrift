@@ -8,7 +8,7 @@
 
 #include <algorithm>
 
-namespace baidu { namespace longscheduler { namespace sample {
+namespace sample {
 
 const char* HelloStruct::ascii_fingerprint = "75D662A56904CF94DB187C975E902D0E";
 const uint8_t HelloStruct::binary_fingerprint[16] = {0x75,0xD6,0x62,0xA5,0x69,0x04,0xCF,0x94,0xDB,0x18,0x7C,0x97,0x5E,0x90,0x2D,0x0E};
@@ -247,4 +247,4 @@ void swap(InvalidRequestException &a, InvalidRequestException &b) {
   swap(a.why, b.why);
 }
 
-}}} // namespace
+} // namespace

@@ -6,7 +6,7 @@
  */
 #include "HelloService.h"
 
-namespace baidu { namespace longscheduler { namespace sample {
+namespace sample {
 
 uint32_t HelloService_HelloEcho_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
@@ -475,5 +475,5 @@ void HelloServiceProcessor::process_Hello(int32_t, ::apache::thrift::protocol::T
   ::boost::shared_ptr< ::apache::thrift::TProcessor > processor(new HelloServiceProcessor(handler));
   return processor;
 }
-}}} // namespace
+} // namespace
 

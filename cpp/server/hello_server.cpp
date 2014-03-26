@@ -29,7 +29,7 @@ using namespace apache::thrift::protocol;
 using namespace apache::thrift::server;
 using namespace apache::thrift::concurrency;
 
-using namespace baidu::longscheduler::sample;
+using namespace sample;
 
 // Default server parameters
 DEFINE_string(transport_type, "framed", "type of TTransport");

@@ -10,7 +10,7 @@
 #include <thrift/TDispatchProcessor.h>
 #include "hello_types.h"
 
-namespace baidu { namespace longscheduler { namespace sample {
+namespace sample {
 
 class HelloServiceIf {
  public:
@@ -313,6 +313,6 @@ class HelloServiceMultiface : virtual public HelloServiceIf {
 
 };
 
-}}} // namespace
+} // namespace
 
 #endif

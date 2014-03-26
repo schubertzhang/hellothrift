@@ -6,7 +6,7 @@
  */
 #include "hello_constants.h"
 
-namespace baidu { namespace longscheduler { namespace sample {
+namespace sample {
 
 const helloConstants g_hello_constants;
 
@@ -15,5 +15,5 @@ helloConstants::helloConstants() {
 
 }
 
-}}} // namespace
+} // namespace
 

@@ -9,7 +9,7 @@
 #
 # namespace
 #
-namespace cpp baidu.longscheduler.sample
+namespace cpp sample
 
 # The interface version (NOT the product version), composed as a dot delimited
 # string with major, minor, and patch level components.

@@ -15,7 +15,7 @@
 #include <thrift/cxxfunctional.h>
 
 
-namespace baidu { namespace longscheduler { namespace sample {
+namespace sample {
 
 typedef struct _HelloStruct__isset {
   _HelloStruct__isset() : g(true), h(false) {}
@@ -153,6 +153,6 @@ class InvalidRequestException : public ::apache::thrift::TException {
 
 void swap(InvalidRequestException &a, InvalidRequestException &b);
 
-}}} // namespace
+} // namespace
 
 #endif

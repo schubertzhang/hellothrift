@@ -9,7 +9,7 @@
 
 #include "hello_types.h"
 
-namespace baidu { namespace longscheduler { namespace sample {
+namespace sample {
 
 class helloConstants {
  public:
@@ -20,6 +20,6 @@ class helloConstants {
 
 extern const helloConstants g_hello_constants;
 
-}}} // namespace
+} // namespace
 
 #endif
