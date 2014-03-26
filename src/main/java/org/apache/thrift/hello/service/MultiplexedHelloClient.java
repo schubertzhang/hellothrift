@@ -1,5 +1,6 @@
 package org.apache.thrift.hello.service;
 
+import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TJSONProtocol;
 import org.apache.thrift.protocol.TMultiplexedProtocol;
 import org.apache.thrift.protocol.TProtocol;

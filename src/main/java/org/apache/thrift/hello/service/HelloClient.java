@@ -22,7 +22,7 @@ public class HelloClient  {
             transportType = args[0];
         }
 
-        String protocolType = "compact";
+        String protocolType = "binary";
         if (args.length > 1) {
             protocolType = args[1];
         }
